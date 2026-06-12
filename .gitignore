@@ -1,0 +1,15 @@
+*
+.env
+
+!.gitignore
+!.gitmodules
+!README.md
+!srcds.ps1
+
+!garrysmod/
+
+!garrysmod/addons/
+!garrysmod/addons/**
+
+!garrysmod/cfg
+!garrysmod/cfg/server.cfg

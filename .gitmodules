@@ -1,0 +1,3 @@
+[submodule "garrysmod/addons"]
+	path = garrysmod/addons
+	url = https://github.com/Flarky55/gmod-core_addons
