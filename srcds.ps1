@@ -72,9 +72,10 @@ function Start-Server
         $ArgumentList = @(
             "-console",
             "-game", "garrysmod",
-            "-port", "27015",
+            "-port", $Config["SRCDS_PORT"],
             "+sv_setsteamaccount",          $Config["SRCDS_GLST"],
             "+host_workshop_collection",    $Config["SRCDS_COLLECTIONID"]
+            "+maxplayers",                  $Config["SRCDS_MAXPLAYERS"],
             "+gamemode",                    $Config["SRCDS_GAMEMODE"],
             "+map",                         $Config["SRCDS_MAP"]
         )
