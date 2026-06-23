@@ -3,7 +3,8 @@
 ## How to setup
 
 1. Install [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD#Downloading_SteamCMD)
-2. Clone repository, create `.env` file with specified variables
+2. Clone repository, create `.env` file with [specified variables](#.env-variables)
+4. Create `garrysmod/cfg/server.secret.cfg` and put there [secret variables](#server.secret.cfg-secret-variables)
 3. Run `srcds.ps1` using PowerShell with `-Install` parameter
 
 ## PowerShell script arguments
@@ -15,11 +16,18 @@
 
 ## .env variables
 
-| Name               | Description                                                                |
-| ------------------ | -------------------------------------------------------------------------- |
-| STEAMCMD_EXE       | Path to SteamCMD executable                                                |
-| SRCDS_PORT         | -port                                                                      |
-| SRCDS_GLST         | Game Server Login Token (https://steamcommunity.com/dev/managegameservers) |
-| SRCDS_COLLECTIONID | +host_workshop_collection                                                  |
-| SRCDS_GAMEMODE     | +gamemode                                                                  |
-| SRCDS_MAP          | +map                                                                       |
+| Name                        | Description                                                                |
+| --------------------------- | -------------------------------------------------------------------------- |
+| STEAMCMD_EXE                | Path to SteamCMD executable                                                |
+| SRCDS_PORT                  | -port                                                                      |
+| SRCDS_GSLT                  | Game Server Login Token (https://steamcommunity.com/dev/managegameservers) |
+| SRCDS_WORKSHOP_COLLECTIONID | +host_workshop_collection                                                  |
+| SRCDS_MAXPLAYERS            | +maxplayers                                                                |
+| SRCDS_GAMEMODE              | +gamemode                                                                  |
+| SRCDS_MAP                   | +map                                                                       |
+
+## server.secret.cfg secret variables
+
+| Name         | Description                                               |
+| ------------ | --------------------------------------------------------- |
+| sv_api_steam | Steam Web API key (https://steamcommunity.com/dev/apikey) |

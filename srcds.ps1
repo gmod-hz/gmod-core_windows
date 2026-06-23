@@ -17,19 +17,13 @@ function Read-EnvFile
 
     $result = @{}
 
-    if (-not (Test-Path $Path))
-    {
-        return $result
-    }
+    if (-not (Test-Path $Path)) { return $result }
 
     foreach ($line in Get-Content $Path)
     {
         $line = $line.Trim()
 
-        if ($line -eq "" -or $line -like "#*")
-        {
-            continue
-        }
+        if ($line -eq "" -or $line -like "#*") { continue }
 
         $key, $value = ($line -split "=", 2).Trim()
 
@@ -50,21 +44,24 @@ function Read-EnvFile
 
 function Install-Server
 {
-    param(
-        [System.Collections.Hashtable]$Config
+    param( [System.Collections.Hashtable]$Config )
+
+    $ArgumentList = @(
+        "+force_install_dir", $PSScriptRoot,
+        "+login", "anonymous",
+        "+app_update", 4020, "validate",
+        "+quit"
     )
 
     Start-Process -FilePath $Config["STEAMCMD_EXE"] `
-        -ArgumentList "+force_install_dir `"$PSScriptRoot`" +login anonymous +app_update 4020 validate +quit" `
+        -ArgumentList $ArgumentList `
         -NoNewWindow `
         -Wait
 }
 
 function Start-Server
 {
-    param(
-        [System.Collections.Hashtable]$Config
-    )
+    param( [System.Collections.Hashtable]$Config )
 
 
     while ($true)
@@ -73,16 +70,15 @@ function Start-Server
             "-console",
             "-game", "garrysmod",
             "-port", $Config["SRCDS_PORT"],
-            "+sv_setsteamaccount",          $Config["SRCDS_GLST"],
-            "+host_workshop_collection",    $Config["SRCDS_COLLECTIONID"]
+            "+sv_setsteamaccount",          $Config["SRCDS_GSLT"],
+            "+host_workshop_collection",    $Config["SRCDS_WORKSHOP_COLLECTIONID"]
             "+maxplayers",                  $Config["SRCDS_MAXPLAYERS"],
             "+gamemode",                    $Config["SRCDS_GAMEMODE"],
             "+map",                         $Config["SRCDS_MAP"]
         )
 
-        if ($Development)
-        {
-            $ArgumentList += @("+hide_server", "1")
+        if ($Development) {
+            $ArgumentList += @("+hide_server", 1)
         }
 
         Write-Log "Staring server..."
@@ -92,11 +88,11 @@ function Start-Server
     }
 }
 
-$config = Read-EnvFile -Path ".env"
+$config = Read-EnvFile ".env"
 
 if ($Install)
 {
-    Install-Server -Config $config
+    Install-Server $config
 }
 
-Start-Server -Config $config
+Start-Server $config
