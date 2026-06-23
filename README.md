@@ -3,8 +3,8 @@
 ## How to setup
 
 1. Install [SteamCMD](https://developer.valvesoftware.com/wiki/SteamCMD#Downloading_SteamCMD)
-2. Clone repository, create `.env` file with [specified variables](#.env-variables)
-4. Create `garrysmod/cfg/server.secret.cfg` and put there [secret variables](#server.secret.cfg-secret-variables)
+2. Clone repository, create `.env` file with [specified variables](#env-variables)
+4. Create `garrysmod/cfg/server.secret.cfg` and put there [secret variables](#serversecretcfg-secret-variables)
 3. Run `srcds.ps1` using PowerShell with `-Install` parameter
 
 ## PowerShell script arguments
